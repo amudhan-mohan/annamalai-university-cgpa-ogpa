@@ -26,7 +26,7 @@ export default function App() {
   }, [semesters]);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/annamalai-university-cgpa-ogpa" >
       {/* Modern Header with Glass Morphism */}
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-gray-200/60 shadow-sm">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-3">
