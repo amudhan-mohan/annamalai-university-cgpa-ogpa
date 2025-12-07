@@ -1,8 +1,8 @@
 // Annamalai University's Formula:
-// GPA = Sum of Credit Points / Sum of Credit Hours
-// OGPA = Sum of GPA / Total Number of GPA
+// CGPA = Sum of Credit Points / Sum of Credit Hours
+// OGPA = Sum of CGPA / Total Number of CGPA
 
-export function calcGPA(subjects) {
+export function calcCGPA(subjects) {
   if (!subjects || subjects.length === 0) return 0;
 
   // If any subject has credits = 0 → mark as reappear
@@ -33,31 +33,31 @@ export function calcGPA(subjects) {
   // Avoid division by zero
   if (sumCreditHours === 0 || !hasValidSubjects) return 0;
 
-  // GPA = Sum of Credit Points / Sum of Credit Hours
-  const rawGPA = sumCreditPoints / sumCreditHours;
+  // CGPA = Sum of Credit Points / Sum of Credit Hours
+  const rawCGPA = sumCreditPoints / sumCreditHours;
 
-  return truncate2(rawGPA);
+  return truncate2(rawCGPA);
 }
 
 export function calcOGPA(semesters) {
   if (!semesters || semesters.length === 0) return 0;
 
-  // Filter out semesters with reappear (null GPA) and get valid GPAs
-  const validGPAs = semesters
+  // Filter out semesters with reappear (null CGPA) and get valid CGPAs
+  const validCGPAs = semesters
     .filter(
       (semester) =>
-        semester.gpa !== null &&
-        typeof semester.gpa === "number" &&
-        semester.gpa > 0
+        semester.cgpa !== null &&
+        typeof semester.cgpa === "number" &&
+        semester.cgpa > 0
     )
-    .map((semester) => semester.gpa);
+    .map((semester) => semester.cgpa);
 
-  // If no valid GPAs, return 0
-  if (validGPAs.length === 0) return 0;
+  // If no valid CGPAs, return 0
+  if (validCGPAs.length === 0) return 0;
 
-  // Calculate sum of all GPAs
-  const sumGPA = validGPAs.reduce((total, gpa) => total + gpa, 0);
-  const ogpa = sumGPA / validGPAs.length;
+  // Calculate sum of all CGPAs
+  const sumCGPA = validCGPAs.reduce((total, cgpa) => total + cgpa, 0);
+  const ogpa = sumCGPA / validCGPAs.length;
 
   return truncate2(ogpa);
 }

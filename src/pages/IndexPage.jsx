@@ -13,7 +13,7 @@ export default function IndexPage({ semesters, setSemesters }) {
 
   // Collect reappear subjects per semester
   const reappearDetails = semesters
-    .filter((s) => s.gpa === null)
+    .filter((s) => s.cgpa === null)
     .map((s) => ({
       name: s.name,
       subjects: s.subjects
@@ -26,9 +26,9 @@ export default function IndexPage({ semesters, setSemesters }) {
     ? null
     : truncate2(calcOGPA(semesters));
 
-  const completedSemesters = semesters.filter(s => s.gpa !== null && s.gpa > 0);
-  const averageGPA = completedSemesters.length > 0
-    ? truncate2(completedSemesters.reduce((sum, sem) => sum + sem.gpa, 0) / completedSemesters.length)
+  const completedSemesters = semesters.filter(s => s.cgpa !== null && s.cgpa > 0);
+  const averageCGPA = completedSemesters.length > 0
+    ? truncate2(completedSemesters.reduce((sum, sem) => sum + sem.cgpa, 0) / completedSemesters.length)
     : 0;
 
   const addSemester = () => {
@@ -37,7 +37,7 @@ export default function IndexPage({ semesters, setSemesters }) {
       id: crypto.randomUUID(),
       name: `Semester ${nextIndex}`,
       subjects: [],
-      gpa: 0
+      cgpa: 0
     };
     setSemesters([newSem, ...semesters]);
   };
@@ -77,7 +77,7 @@ export default function IndexPage({ semesters, setSemesters }) {
             </div>
           </div>
 
-          {/* Average GPA */}
+          {/* Average CGPA */}
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/60 shadow-sm">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center">
@@ -86,8 +86,8 @@ export default function IndexPage({ semesters, setSemesters }) {
                 </svg>
               </div>
               <div>
-                <p className="text-2xl font-bold text-gray-900">{format2(averageGPA)}</p>
-                <p className="text-xs text-gray-500">Avg GPA</p>
+                <p className="text-2xl font-bold text-gray-900">{format2(averageCGPA)}</p>
+                <p className="text-xs text-gray-500">Avg CGPA</p>
               </div>
             </div>
           </div>
@@ -205,7 +205,7 @@ export default function IndexPage({ semesters, setSemesters }) {
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No semesters yet</h3>
             <p className="text-gray-600 mb-6">
-              Create your first semester to start tracking your academic performance and calculate your GPA.
+              Create your first semester to start tracking your academic performance and calculate your CGPA.
             </p>
             <button
               onClick={addSemester}
@@ -232,9 +232,9 @@ export default function IndexPage({ semesters, setSemesters }) {
             <h3 className="text-lg font-semibold text-blue-900 mb-3">Calculation Formula</h3>
 
             <div className="grid md:grid-cols-2 gap-6">
-              {/* GPA Formula */}
+              {/* CGPA Formula */}
               <div className="space-y-3">
-                <h4 className="font-semibold text-blue-800 text-sm">Semester GPA</h4>
+                <h4 className="font-semibold text-blue-800 text-sm">Semester CGPA</h4>
                 <div className="bg-white/80 rounded-xl p-4 border border-blue-200">
                   <div className="text-center text-sm text-blue-900 font-mono">
                     <div>Sum of Credit Points</div>
@@ -253,7 +253,7 @@ export default function IndexPage({ semesters, setSemesters }) {
                 <h4 className="font-semibold text-blue-800 text-sm">Overall OGPA</h4>
                 <div className="bg-white/80 rounded-xl p-4 border border-blue-200">
                   <div className="text-center text-sm text-blue-900 font-mono">
-                    <div>Sum of All GPAs</div>
+                    <div>Sum of All CGPAs</div>
                     <div className="border-t border-blue-300 my-1"></div>
                     <div>Total Number of Semesters</div>
                   </div>
@@ -270,8 +270,8 @@ export default function IndexPage({ semesters, setSemesters }) {
               <h5 className="font-semibold text-blue-800 text-xs mb-2">Example Calculation:</h5>
               <div className="text-xs text-blue-700 space-y-1">
                 <div>• Subject: 4 hours × 5 grade = 20 Credit Points</div>
-                <div>• Semester GPA = Total Credit Points ÷ Total Credit Hours</div>
-                <div>• OGPA = Average of all semester GPAs</div>
+                <div>• Semester CGPA = Total Credit Points ÷ Total Credit Hours</div>
+                <div>• OGPA = Average of all semester CGPAs</div>
               </div>
             </div>
           </div>
@@ -380,7 +380,7 @@ export default function IndexPage({ semesters, setSemesters }) {
         </div>
       </div>
 
-      {/* GPA Growth Strategy Card */}
+      {/* CGPA Growth Strategy Card */}
       <div className="bg-gradient-to-br from-emerald-50 to-teal-50/80 backdrop-blur-sm rounded-2xl p-6 border border-emerald-200/60 shadow-sm">
         <div className="flex items-start gap-4">
           <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center flex-shrink-0">
@@ -389,7 +389,7 @@ export default function IndexPage({ semesters, setSemesters }) {
             </svg>
           </div>
           <div className="flex-1">
-            <h3 className="text-lg font-semibold text-emerald-900 mb-4">How to Grow Your GPA & OGPA</h3>
+            <h3 className="text-lg font-semibold text-emerald-900 mb-4">How to Grow Your CGPA & OGPA</h3>
 
             {/* Credit Hours Strategy */}
             <div className="mb-6">
@@ -409,9 +409,9 @@ export default function IndexPage({ semesters, setSemesters }) {
                   </div>
                   <ul className="text-xs text-emerald-700 space-y-1">
                     <li>• Core theory subjects</li>
-                    <li>• Maximum weight on GPA</li>
+                    <li>• Maximum weight on CGPA</li>
                     <li>• Focus on getting S/A grades</li>
-                    <li>• 1 point improvement = +0.25 GPA boost</li>
+                    <li>• 1 point improvement = +0.25 CGPA boost</li>
                   </ul>
                 </div>
 
@@ -423,7 +423,7 @@ export default function IndexPage({ semesters, setSemesters }) {
                   </div>
                   <ul className="text-xs text-emerald-700 space-y-1">
                     <li>• Electives & minor subjects</li>
-                    <li>• Moderate weight on GPA</li>
+                    <li>• Moderate weight on CGPA</li>
                     <li>• Maintain B+ grades or better</li>
                     <li>• Good for consistency</li>
                   </ul>
@@ -439,7 +439,7 @@ export default function IndexPage({ semesters, setSemesters }) {
                 <ul className="text-xs text-emerald-700 space-y-1">
                   <li>• Practical/laboratory courses</li>
                   <li>• Easier to score high grades</li>
-                  <li>• Perfect for boosting GPA</li>
+                  <li>• Perfect for boosting CGPA</li>
                   <li>• Aim for S grades consistently</li>
                 </ul>
               </div>
@@ -447,13 +447,13 @@ export default function IndexPage({ semesters, setSemesters }) {
 
             {/* Growth Strategy */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* GPA Growth */}
+              {/* CGPA Growth */}
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
-                  <h4 className="font-semibold text-emerald-800 text-sm">GPA Growth Strategy</h4>
+                  <h4 className="font-semibold text-emerald-800 text-sm">CGPA Growth Strategy</h4>
                 </div>
                 <div className="bg-white/80 rounded-xl p-4 border border-emerald-200 space-y-2">
                   <div className="flex justify-between items-center text-sm">
@@ -509,8 +509,8 @@ export default function IndexPage({ semesters, setSemesters }) {
                 <h5 className="font-semibold text-emerald-800 text-xs">Quick Impact Calculation</h5>
               </div>
               <div className="text-xs text-emerald-700 space-y-1">
-                <div>• Improving 4-credit subject from B→A: +9 points × 4 hours = <span className="font-semibold">+36 credit points</span></div>
-                <div>• Improving 3-credit subject from C→B: +8 point × 3 hours = <span className="font-semibold">+24 credit points</span></div>
+                <div>• Improving 4-credit subject from B→A: +7 points × 4 hours = <span className="font-semibold">+28 credit points</span></div>
+                <div>• Improving 3-credit subject from C→B: +5 point × 3 hours = <span className="font-semibold">+15 credit points</span></div>
                 <div>• Perfect lab (1.5 credits): S grade = <span className="font-semibold">15 credit points</span></div>
               </div>
             </div>
@@ -527,7 +527,7 @@ export default function IndexPage({ semesters, setSemesters }) {
                 <li>1. <span className="font-semibold">Focus on 4 & 3 credit subjects first</span></li>
                 <li>2. <span className="font-semibold">Aim for S/A grades in labs</span> (easy boost)</li>
                 <li>3. <span className="font-semibold">Maintain consistency</span> across all semesters</li>
-                <li>4. <span className="font-semibold">Never get reappear</span> (zeros destroy GPA)</li>
+                <li>4. <span className="font-semibold">Never get reappear</span> (zeros destroy CGPA)</li>
               </ol>
             </div>
           </div>
