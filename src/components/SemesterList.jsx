@@ -29,19 +29,19 @@ export default function SemesterList({ semesters, setSemesters }) {
     return { totalSubjects, completedSubjects, totalCredits, totalHours };
   };
 
-  const getPerformanceColor = (cgpa) => {
-    if (cgpa === null) return "red";
-    if (cgpa >= 8.5) return "green";
-    if (cgpa >= 7.0) return "blue";
-    if (cgpa >= 5.0) return "yellow";
+  const getPerformanceColor = (gpa) => {
+    if (gpa === null) return "red";
+    if (gpa >= 8.5) return "green";
+    if (gpa >= 7.0) return "blue";
+    if (gpa >= 5.0) return "yellow";
     return "orange";
   };
 
-  const getPerformanceLabel = (cgpa) => {
-    if (cgpa === null) return "Reappear";
-    if (cgpa >= 8.5) return "Excellent";
-    if (cgpa >= 7.0) return "Good";
-    if (cgpa >= 5.0) return "Average";
+  const getPerformanceLabel = (gpa) => {
+    if (gpa === null) return "Reappear";
+    if (gpa >= 8.5) return "Excellent";
+    if (gpa >= 7.0) return "Good";
+    if (gpa >= 5.0) return "Average";
     return "Needs Improvement";
   };
 
@@ -49,8 +49,8 @@ export default function SemesterList({ semesters, setSemesters }) {
     <div className="space-y-4">
       {sortedSemesters.map((sem) => {
         const { totalSubjects, completedSubjects, totalCredits, totalHours } = getSemesterStats(sem);
-        const performanceColor = getPerformanceColor(sem.cgpa);
-        const performanceLabel = getPerformanceLabel(sem.cgpa);
+        const performanceColor = getPerformanceColor(sem.gpa);
+        const performanceLabel = getPerformanceLabel(sem.gpa);
 
         const colorClasses = {
           green: "bg-green-50 border-green-200 text-green-700",
@@ -80,9 +80,9 @@ export default function SemesterList({ semesters, setSemesters }) {
                           <div className={`w-1.5 h-1.5 rounded-full bg-${performanceColor}-500`}></div>
                           {performanceLabel}
                         </span>
-                        {sem.cgpa !== null && (
+                        {sem.gpa !== null && (
                           <span className="text-sm text-gray-600">
-                            {typeof sem.cgpa === "number" ? format2(sem.cgpa) : "0.00"} CGPA
+                            {typeof sem.gpa === "number" ? format2(sem.gpa) : "0.00"} GPA
                           </span>
                         )}
                       </div>

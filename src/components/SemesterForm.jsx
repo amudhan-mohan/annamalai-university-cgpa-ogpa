@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { calcCGPA, truncate2, format2 } from "../utils/math.js";
+import { calcGPA, truncate2, format2 } from "../utils/math.js";
 import { PlusIcon, TrashIcon, CalculatorIcon } from "./Icons.jsx";
 
 export default function SemesterForm({ semester, updateSemester }) {
@@ -8,8 +8,8 @@ export default function SemesterForm({ semester, updateSemester }) {
   const [subjects, setSubjects] = useState(semester.subjects || []);
 
   useEffect(() => {
-    const cgpa = calcCGPA(subjects);
-    updateSemester({ ...semester, subjects, cgpa });
+    const gpa = calcCGPA(subjects);
+    updateSemester({ ...semester, subjects, gpa });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subjects]);
 
@@ -241,7 +241,7 @@ export default function SemesterForm({ semester, updateSemester }) {
         <span className="font-medium">Add New Subject</span>
       </button>
 
-      {/* CGPA Display */}
+      {/* GPA Display */}
       <div className="bg-gradient-to-br from-white to-gray-50/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/60 shadow-sm">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex items-center gap-3">
@@ -249,16 +249,16 @@ export default function SemesterForm({ semester, updateSemester }) {
               <CalculatorIcon className="w-5 h-5 text-brand-600" />
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900">Semester CGPA</h3>
+              <h3 className="font-semibold text-gray-900">Semester GPA</h3>
               <p className="text-sm text-gray-600">Automatically calculated from subjects</p>
             </div>
           </div>
 
-          <div className={`flex items-center gap-3 px-4 py-3 rounded-xl ${semester.cgpa === null
+          <div className={`flex items-center gap-3 px-4 py-3 rounded-xl ${semester.gpa === null
               ? 'bg-red-50 border border-red-200'
               : 'bg-green-50 border border-green-200'
             }`}>
-            {semester.cgpa === null ? (
+            {semester.gpa === null ? (
               <>
                 <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center">
                   <span className="text-sm font-bold text-red-600">!</span>
@@ -273,10 +273,10 @@ export default function SemesterForm({ semester, updateSemester }) {
 
 
                 <div className="text-2xl font-bold text-green-800">
-                  {typeof semester.cgpa === "number" ? format2(semester.cgpa) : "0.00"}
+                  {typeof semester.gpa === "number" ? format2(semester.gpa) : "0.00"}
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-medium text-green-700">Current CGPA</p>
+                  <p className="text-sm font-medium text-green-700">Current GPA</p>
                   <p className="text-xs text-green-600">{completedSubjects} subjects completed</p>
                 </div>
               </>
@@ -297,7 +297,7 @@ export default function SemesterForm({ semester, updateSemester }) {
               <li>• Enter values from 0 to any positive number</li>
               <li>• Use decimal point for fractional values (e.g., 1.5, 3.75)</li>
               <li>• Set credits to 0 for reappear subjects</li>
-              <li>• CGPA updates automatically as you enter data</li>
+              <li>• GPA updates automatically as you enter data</li>
             </ul>
           </div>
         </div>

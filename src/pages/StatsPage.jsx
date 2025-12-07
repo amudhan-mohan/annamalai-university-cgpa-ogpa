@@ -9,15 +9,15 @@ export default function StatsPage({ semesters }) {
     return numA - numB;
   });
 
-  const completedSemesters = sortedSemesters.filter(s => s.cgpa !== null && s.cgpa > 0);
+  const completedSemesters = sortedSemesters.filter(s => s.gpa !== null && s.gpa > 0);
   const totalCredits = completedSemesters.reduce((sum, sem) =>
     sum + (sem.subjects?.reduce((subSum, sub) => subSum + Number(sub.credits), 0) || 0), 0
   );
   const totalHours = completedSemesters.reduce((sum, sem) =>
     sum + (sem.subjects?.reduce((subSum, sub) => subSum + Number(sub.hours), 0) || 0), 0
   );
-  const averageCGPA = completedSemesters.length > 0
-    ? completedSemesters.reduce((sum, sem) => sum + sem.cgpa, 0) / completedSemesters.length
+  const averageGPA = completedSemesters.length > 0
+    ? completedSemesters.reduce((sum, sem) => sum + sem.gpa, 0) / completedSemesters.length
     : 0;
 
   return (
@@ -63,8 +63,8 @@ export default function StatsPage({ semesters }) {
 
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/60 shadow-sm">
           <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900">{averageCGPA.toFixed(2)}</p>
-            <p className="text-xs text-gray-500">Avg CGPA</p>
+            <p className="text-2xl font-bold text-gray-900">{averageGPA.toFixed(2)}</p>
+            <p className="text-xs text-gray-500">Avg GPA</p>
           </div>
         </div>
       </div>
@@ -76,15 +76,15 @@ export default function StatsPage({ semesters }) {
           {sortedSemesters.map((sem) => (
             <div key={sem.id} className="flex items-center justify-between">
               <span className="text-sm font-medium text-gray-700">{sem.name}</span>
-              <span className={`px-2 py-1 rounded-full text-xs font-medium ${sem.cgpa === null
+              <span className={`px-2 py-1 rounded-full text-xs font-medium ${sem.gpa === null
                   ? 'bg-red-100 text-red-700'
-                  : sem.cgpa >= 8
+                  : sem.gpa >= 8
                     ? 'bg-green-100 text-green-700'
-                    : sem.cgpa >= 6
+                    : sem.gpa >= 6
                       ? 'bg-blue-100 text-blue-700'
                       : 'bg-yellow-100 text-yellow-700'
                 }`}>
-                {sem.cgpa === null ? 'Reappear' : `${sem.cgpa.toFixed(2)} CGPA`}
+                {sem.gpa === null ? 'Reappear' : `${sem.gpa.toFixed(2)} GPA`}
               </span>
             </div>
           ))}

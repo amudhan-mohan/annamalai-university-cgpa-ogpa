@@ -43,7 +43,7 @@ export default function App() {
               {/* App Info */}
               <div className="flex flex-col">
                 <h1 className="text-lg font-bold text-gray-900 leading-tight">
-                  Annamalai University CGPA & OGPA Calculator
+                  Annamalai University GPA & OGPA Calculator
                 </h1>
               </div>
             </div>
@@ -114,7 +114,7 @@ export default function App() {
             {/* Copyright */}
             <div className="text-center sm:text-left">
               <p className="text-sm text-gray-600 font-medium">
-                © {new Date().getFullYear()} Annamalai University CGPA & OGPA Calculator
+                © {new Date().getFullYear()} Annamalai University GPA & OGPA Calculator
               </p>
               <p className="text-xs text-gray-500 mt-1">
                 Built with React + Tailwind CSS

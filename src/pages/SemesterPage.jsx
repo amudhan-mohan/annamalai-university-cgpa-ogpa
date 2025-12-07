@@ -42,8 +42,8 @@ export default function SemesterPage({ semesters, setSemesters }) {
     );
   }
 
-  const hasReappear = semester.cgpa === null;
-  const cgpaValue = typeof semester.cgpa === "number" ? semester.cgpa.toFixed(2) : "0.00";
+  const hasReappear = semester.gpa === null;
+  const gpaValue = typeof semester.gpa === "number" ? semester.gpa.toFixed(2) : "0.00";
 
   return (
     <div className="space-y-6 sm:space-y-8">
@@ -61,12 +61,12 @@ export default function SemesterPage({ semesters, setSemesters }) {
           <div>
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{semester.name}</h1>
             <p className="text-sm text-gray-600 mt-1">
-              Manage subjects and calculate your semester CGPA
+              Manage subjects and calculate your semester GPA
             </p>
           </div>
         </div>
 
-        {/* CGPA Badge */}
+        {/* GPA Badge */}
         <div className={`flex items-center gap-3 px-4 py-3 rounded-xl border ${hasReappear
             ? 'bg-red-50 border-red-200'
             : 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-200'
@@ -91,8 +91,8 @@ export default function SemesterPage({ semesters, setSemesters }) {
                 </svg>
               </div>
               <div>
-                <p className="text-sm font-medium text-green-700">Semester CGPA</p>
-                <p className="text-lg font-bold text-green-800">{cgpaValue}</p>
+                <p className="text-sm font-medium text-green-700">Semester GPA</p>
+                <p className="text-lg font-bold text-green-800">{gpaValue}</p>
               </div>
             </>
           )}
@@ -177,7 +177,7 @@ export default function SemesterPage({ semesters, setSemesters }) {
           <div>
             <h4 className="font-semibold text-blue-800 text-sm mb-1">Quick Tip</h4>
             <p className="text-blue-700 text-sm">
-              Set credits to 0 for reappear subjects. CGPA is automatically calculated when all subjects have credits.
+              Set credits to 0 for reappear subjects. GPA is automatically calculated when all subjects have credits.
             </p>
           </div>
         </div>
