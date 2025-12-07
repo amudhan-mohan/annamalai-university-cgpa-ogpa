@@ -1,6 +1,6 @@
 {
-  "name": "Annamalai University CGPA & OGPA Calculator",
-  "short_name": "AU CGPA/OGPA",
+  "name": "Annamalai University GPA & OGPA Calculator",
+  "short_name": "AU GPA&OGPA Calculator",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
