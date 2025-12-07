@@ -27,8 +27,8 @@ export default function IndexPage({ semesters, setSemesters }) {
     : truncate2(calcOGPA(semesters));
 
   const completedSemesters = semesters.filter(s => s.cgpa !== null && s.cgpa > 0);
-  const averageCGPA = completedSemesters.length > 0
-    ? truncate2(completedSemesters.reduce((sum, sem) => sum + sem.cgpa, 0) / completedSemesters.length)
+  const latestCGPA = completedSemesters.length > 0
+    ? completedSemesters[completedSemesters.length - 1].cgpa
     : 0;
 
   const addSemester = () => {
@@ -86,8 +86,8 @@ export default function IndexPage({ semesters, setSemesters }) {
                 </svg>
               </div>
               <div>
-                <p className="text-2xl font-bold text-gray-900">{format2(averageCGPA)}</p>
-                <p className="text-xs text-gray-500">Avg CGPA</p>
+                <p className="text-2xl font-bold text-gray-900">{format2(latestCGPA)}</p>
+                <p className="text-xs text-gray-500">Latest CGPA</p>
               </div>
             </div>
           </div>

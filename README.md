@@ -1,4 +1,4 @@
-# 🎓 Annamalai University GPA & OGPA Calculator
+# 🎓 Annamalai University CGPA & OGPA Calculator
 
 A modern, mobile-first Progressive Web App (PWA) designed specifically for Annamalai University students to calculate, track, and optimize their academic performance. This tool provides real-time GPA (Grade Point Average) and OGPA (Overall Grade Point Average) calculations with a beautiful, intuitive interface that works seamlessly across all devices — online or offline.
 
