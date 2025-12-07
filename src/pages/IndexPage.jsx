@@ -509,8 +509,8 @@ export default function IndexPage({ semesters, setSemesters }) {
                 <h5 className="font-semibold text-emerald-800 text-xs">Quick Impact Calculation</h5>
               </div>
               <div className="text-xs text-emerald-700 space-y-1">
-                <div>• Improving 4-credit subject from B→A: +7 points × 4 hours = <span className="font-semibold">+28 credit points</span></div>
-                <div>• Improving 3-credit subject from C→B: +5 point × 3 hours = <span className="font-semibold">+15 credit points</span></div>
+                <div>• Improving 4-credit subject from B→A: +9 points × 4 hours = <span className="font-semibold">+36 credit points</span></div>
+                <div>• Improving 3-credit subject from C→B: +8 point × 3 hours = <span className="font-semibold">+24 credit points</span></div>
                 <div>• Perfect lab (1.5 credits): S grade = <span className="font-semibold">15 credit points</span></div>
               </div>
             </div>
